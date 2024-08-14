@@ -1,19 +1,28 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <AppHeader></AppHeader>
+  <TodoInput></TodoInput>
+  <TodoList></TodoList>
+  <TodoFooter></TodoFooter>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
+import AppHeader from './components/AppHeader.vue';
+import TodoInput from './components/TodoInput.vue'
+import TodoList from './components/TodoList.vue';
+import TodoFooter from './components/TodoFooter.vue';
 
 export default {
-  name: 'App',
   components: {
-    HelloWorld
+    AppHeader,
+    TodoInput,
+    TodoList,
+    TodoFooter
   }
 }
 </script>
 
+import AppVue
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
