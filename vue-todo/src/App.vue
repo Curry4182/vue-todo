@@ -1,15 +1,9 @@
 <template>
-  <TodoHeader ></TodoHeader>
+  <TodoHeader></TodoHeader>
   <TodoInput v-on:addOneItem="addTodoItem"></TodoInput>
-  <TodoList 
-    :propsData="todoItems" 
-    v-on:removeOneItem="removeTodoItem"
-    v-on:toggleOneItem="toggleTodoItem"
-  >
+  <TodoList :propsData="todoItems" v-on:removeOneItem="removeTodoItem" v-on:toggleOneItem="toggleTodoItem">
   </TodoList>
-  <TodoFooter
-    v-on:clearAllItems="clearAll"
-  >
+  <TodoFooter v-on:clearAllItems="clearAll">
   </TodoFooter>
 </template>
 
