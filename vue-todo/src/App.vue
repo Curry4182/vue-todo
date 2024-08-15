@@ -22,7 +22,10 @@ export default {
     },
     addTodoItem(newTodoItem) {
       const obj = { completed: false, item: newTodoItem };
-      localStorage.setItem(newTodoItem, JSON.stringify(obj));
+      if(localStorage.getItem(obj.item)) {
+        return;
+      }
+      localStorage.setItem(obj.item, JSON.stringify(obj));
       this.todoItems.push(obj);
     },
     toggleTodoItem(todoItem, index) {

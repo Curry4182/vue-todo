@@ -1,15 +1,16 @@
 <template>
     <div>
-        <ul>
+        <TransitionGroup name="list" tag="ul">
             <li v-for="(todoItem, index) in propsData" :key="todoItem.item + index" class="shadow">
-                <i :class="{checkBtnCompleted:todoItem.completed}" class="checkBtn fa-solid fa-check" @click="toggleComplete(todoItem, index)">
+                <i :class="{checkBtnCompleted:todoItem.completed}" class="checkBtn fa-solid fa-check"
+                    @click="toggleComplete(todoItem, index)">
                 </i>
                 <span :class="{textCompleted:todoItem.completed}">{{ todoItem.item }}</span>
                 <span class="removeBtn" @click="removeItem(todoItem, index)">
                     <i class="fa-solid fa-trash"></i>
                 </span>
             </li>
-        </ul>
+        </TransitionGroup>
     </div>
 </template>
 
@@ -64,6 +65,17 @@ li {
 .removeBtn {
     margin-left: auto;
     color: #de4343;
+}
+
+.list-enter-active,
+.list-leave-active {
+    transition: all 1s ease;
+}
+
+.list-enter-from,
+.list-leave-to {
+    opacity: 0;
+    transform: translateX(30px);
 }
 
 </style>

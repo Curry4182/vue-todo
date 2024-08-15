@@ -8,11 +8,11 @@
         <DefaultModal :show="showModal" @close="closeModal">
             <template v-slot:header>
                 경고!
-                <i class="closeModalBtn fas fa-times"></i>
+                <i @click="closeModal" class="closeModalBtn fas fa-times"></i>
             </template>
             <template v-slot:body>
                 <p>
-                    입력이 비어져 있으면 할 일을 추가할 수 없습니다. 
+                    입력이 비어져 있습니다.
                 </p>
             </template>
         </DefaultModal>
