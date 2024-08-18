@@ -48,7 +48,7 @@ export default {
   },
   created() {
     if (localStorage.length > 0) {
-      for (var i = 0; i < localStorage.length; i++) {
+      for (let i = 0; i < localStorage.length; i++) {
         if (localStorage.key(i) === '') {
           continue;
         }
