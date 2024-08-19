@@ -1,8 +1,8 @@
 <template>
     <div class="inputBox shadow">
-        <input type="text" name="" id="" v-model="newTodoItem" @keypress.enter="addTodoItem">
+        <input type="text" name="" id="" v-model="newTodoItem" @keypress.enter="addTodoItemOne">
         <!-- <button @click="addTodo">add button</button> -->
-        <span class="addContainer" @click="addTodoItem">
+        <span class="addContainer" @click="addTodoItemOne">
             <i class="fa-solid fa-plus addBtn"></i>
         </span>
         <DefaultModal :show="showModal" @close="closeModal">
@@ -21,6 +21,7 @@
 
 <script>
     import DefaultModal from './common/DefaultModal.vue';
+    import { mapMutations } from 'vuex';
 
     export default {
         data() {
@@ -33,12 +34,13 @@
             DefaultModal
         },
         methods: {
-            addTodoItem() {
+            ...mapMutations(['addTodoItem']),
+            addTodoItemOne() {
                 if(this.newTodoItem === '') {
                     this.showModal = true;
                     return;
                 }
-                this.$store.commit('addTodoItem', this.newTodoItem);
+                this.addTodoItem(this.newTodoItem);
                 this.clearInput();
             },
             clearInput() {

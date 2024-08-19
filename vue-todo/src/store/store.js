@@ -53,6 +53,11 @@ const store = createStore({
             state.todoItems = [];
             localStorage.clear();
         }
+    },
+    getters: {
+        storedTodoItems(state) {
+            return state.todoItems;
+        }
     }
 });
 
