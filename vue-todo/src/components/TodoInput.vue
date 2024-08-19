@@ -5,19 +5,37 @@
         <span class="addContainer" @click="addTodoItem">
             <i class="fa-solid fa-plus addBtn"></i>
         </span>
+        <DefaultModal :show="showModal" @close="closeModal">
+            <template v-slot:header>
+                경고!
+                <i @click="closeModal" class="closeModalBtn fas fa-times"></i>
+            </template>
+            <template v-slot:body>
+                <p>
+                    입력이 비어져 있습니다.
+                </p>
+            </template>
+        </DefaultModal>
     </div>
 </template>
 
 <script>
+    import DefaultModal from './common/DefaultModal.vue';
+
     export default {
         data() {
             return {
-                newTodoItem: ""
+                newTodoItem: "",
+                showModal: false
             }
+        },
+        components: {
+            DefaultModal
         },
         methods: {
             addTodoItem() {
                 if(this.newTodoItem === '') {
+                    this.showModal = true;
                     return;
                 }
                 this.$emit('addOneItem', this.newTodoItem);
@@ -25,6 +43,9 @@
             },
             clearInput() {
                 this.newTodoItem = "";
+            },
+            closeModal() {
+                this.showModal = false;
             }
         }
     }
@@ -55,5 +76,7 @@ input:focus {
     color: white;
     vertical-align: middle;
 }
-
+.closeModalBtn {
+    color: #42b983;
+}
 </style>

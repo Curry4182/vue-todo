@@ -1,15 +1,9 @@
 <template>
-  <TodoHeader ></TodoHeader>
+  <TodoHeader></TodoHeader>
   <TodoInput v-on:addOneItem="addTodoItem"></TodoInput>
-  <TodoList 
-    :propsData="todoItems" 
-    v-on:removeOneItem="removeTodoItem"
-    v-on:toggleOneItem="toggleTodoItem"
-  >
+  <TodoList :propsData="todoItems" v-on:removeOneItem="removeTodoItem" v-on:toggleOneItem="toggleTodoItem">
   </TodoList>
-  <TodoFooter
-    v-on:clearAllItems="clearAll"
-  >
+  <TodoFooter v-on:clearAllItems="clearAll">
   </TodoFooter>
 </template>
 
@@ -28,7 +22,10 @@ export default {
     },
     addTodoItem(newTodoItem) {
       const obj = { completed: false, item: newTodoItem };
-      localStorage.setItem(newTodoItem, JSON.stringify(obj));
+      if(localStorage.getItem(obj.item)) {
+        return;
+      }
+      localStorage.setItem(obj.item, JSON.stringify(obj));
       this.todoItems.push(obj);
     },
     toggleTodoItem(todoItem, index) {
@@ -51,7 +48,7 @@ export default {
   },
   created() {
     if (localStorage.length > 0) {
-      for (var i = 0; i < localStorage.length; i++) {
+      for (let i = 0; i < localStorage.length; i++) {
         if (localStorage.key(i) === '') {
           continue;
         }
