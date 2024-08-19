@@ -38,7 +38,7 @@
                     this.showModal = true;
                     return;
                 }
-                this.$emit('addOneItem', this.newTodoItem);
+                this.$store.commit('addTodoItem', this.newTodoItem);
                 this.clearInput();
             },
             clearInput() {
