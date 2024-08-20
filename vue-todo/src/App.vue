@@ -2,7 +2,7 @@
   <div>
     <TodoHeader></TodoHeader>
     <TodoInput @addTodoItem="addTodoItem"></TodoInput>
-    <TodoList :todoItems="todoItems"></TodoList>
+    <TodoList :todoItems="todoItems" @removeTodoItem="removeTodoItem"></TodoList>
   </div>
 </template>
 
@@ -39,9 +39,14 @@
         }
       }
 
+      function removeTodoItem(item, index) {
+        todoItems.value.splice(index, 1);
+        localStorage.removeItem(item);
+      }
+
       todoItems.value = fetchTodos();
 
-      return { todoItems, addTodoItem }
+      return { todoItems, addTodoItem, removeTodoItem }
     }
   }
 </script>
