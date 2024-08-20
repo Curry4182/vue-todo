@@ -1,6 +1,6 @@
 <template>
   <div>
-    <TodoHeader></TodoHeader>
+    <TodoHeader :appTitle="todoTitle"></TodoHeader>
     <TodoInput @addTodoItem="addTodoItem"></TodoInput>
     <TodoList :todoItems="todoItems" @removeTodoItem="removeTodoItem"></TodoList>
   </div>
@@ -22,6 +22,7 @@
 
       // data
       const todoItems = ref([]);
+      const todoTitle = ref("할 일");
 
       // methods
       function fetchTodos() {
@@ -46,7 +47,7 @@
 
       todoItems.value = fetchTodos();
 
-      return { todoItems, addTodoItem, removeTodoItem }
+      return { todoItems, addTodoItem, removeTodoItem, todoTitle }
     }
   }
 </script>
