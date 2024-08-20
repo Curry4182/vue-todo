@@ -11,6 +11,7 @@
   import TodoInput from '@/components/TodoInput.vue'; 
   import TodoList from '@/components/TodoList.vue';
   import { ref, onBeforeMount } from 'vue';
+  import useTodo from './hooks/useTodo.js'
 
   export default {
     components: {
@@ -19,31 +20,13 @@
       TodoList
     },
     setup() {
-
-      // data
-      const todoItems = ref([]);
       const todoTitle = ref("할 일");
-
-      // methods
-      function fetchTodos() {
-        const arr = [];
-        for (let i = 0; i < localStorage.length; i++) {
-          const todoItem = localStorage.key(i);
-          arr.push(todoItem);
-        }
-        return arr;
-      }
-
-      function addTodoItem(todoItem) {
-        if(!localStorage.getItem(todoItem)) {
-          todoItems.value.push(todoItem);
-        }
-      }
-
-      function removeTodoItem(item, index) {
-        todoItems.value.splice(index, 1);
-        localStorage.removeItem(item);
-      }
+      const {
+        todoItems,
+        addTodoItem,
+        removeTodoItem,
+        fetchTodos
+      } = useTodo();
 
       onBeforeMount(() => {
         todoItems.value = fetchTodos();
