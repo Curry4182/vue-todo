@@ -10,7 +10,7 @@
   import TodoHeader from '@/components/TodoHeader.vue';
   import TodoInput from '@/components/TodoInput.vue'; 
   import TodoList from '@/components/TodoList.vue';
-  import { ref } from 'vue';
+  import { ref, onBeforeMount } from 'vue';
 
   export default {
     components: {
@@ -45,7 +45,9 @@
         localStorage.removeItem(item);
       }
 
-      todoItems.value = fetchTodos();
+      onBeforeMount(() => {
+        todoItems.value = fetchTodos();
+      });
 
       return { todoItems, addTodoItem, removeTodoItem, todoTitle }
     }
